@@ -112,7 +112,11 @@ class Result
                 $this->_objectManager->get('Magento\CatalogSearch\Helper\Data')->checkNotes();
                 $resultsBlockHtml = $this->_resultPageFactory->create()->getLayout()->getBlock('search.result')
                     ->toHtml();
-
+				$leftNavBlockHtml = $this->_resultPageFactory->create()->getLayout()->getBlock('main.mana.layered_nav')->toHtml();
+				return $this->_resultJsonFactory->create()->setData(['success' => true, 'html' => [
+									'products_list' => $resultsBlockHtml,
+									'filters' => $leftNavBlockHtml
+								]]);
                 return $this->_resultJsonFactory->create()->setData(['success' => true, 'html' => [
                     'products_list' => $resultsBlockHtml
                 ]]);
