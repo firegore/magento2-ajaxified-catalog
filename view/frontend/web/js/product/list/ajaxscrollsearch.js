@@ -17,7 +17,6 @@ $(window).bind('scroll', function() {
 			$('.column.main').append($('<div class="spinner"><div class="dot1"></div><div class="dot2"></div></div>'));
 			run=0;
 			if (typeof $('.action.next').attr('href') !== "undefined") {
-				
 				$.ajax({url: $('.action.next').attr('href'), type: "get", data: { ajax: 1}, dataType: "json",success: function(result){
 					$('.action.next').remove();
 					$('.spinner').remove();
@@ -61,7 +60,7 @@ function search() {
 	$.ajax({url: "/catalogsearch/result/index/", type: "get", data: { ajax: "1", q: term}, dataType: "json",success: function(result){
 		$('.spinner.main').remove();
 		$("#page-title-heading").html("Search results for: '" + term + "'");
-		$(".breadcrumbs" ).html("<ul class=\"items\"><li class=\"item home\"><a href=\"http://playground.buzzcateringsupplies.com/\" title=\"Go to Home Page\">Home</a></li><li class=\"item\">Search results for: '" + term + "'</a></li></ul>")
+		$(".breadcrumbs" ).html("<ul class=\"items\"><li class=\"item home\">Home</li><li class=\"item\">Search results for: '" + term + "'</a></li></ul>")
 		$('.products.wrapper').html(result['html']['products_list']);
 		filters = result['html']['filters'].replace("&ajax=1", '');
 		$('.sidebar-main').html(filters);
@@ -69,7 +68,6 @@ function search() {
 		$('.column.main').trigger('contentUpdated');
 		$('.sidebar-main').trigger('contentUpdated');
 		$("form[data-role='tocart-form']").catalogAddToCart();
-		setFilterHeight();
 	}});
 	
 }
